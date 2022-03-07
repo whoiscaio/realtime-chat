@@ -56,6 +56,11 @@ const ChatContainer = styled('div', {
         fontSize: '18px',
         padding: '10px 20px',
         marginLeft: '16px',
+        cursor: 'pointer',
+        '&:disabled': {
+          background: '#eeeeee',
+          cursor: 'not-allowed',
+        }
       },
       '&:last-child button': {
         background: '#f6f7f4',
