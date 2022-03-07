@@ -19,18 +19,27 @@ function Chat({ currentUsername }: ChatProps) {
 
   return (
     <ChatContainer>
-      <div className="chat">
-        <div className="received-message">I've received this message</div>
-        <div className="sent-message">I've sent this message</div>
-      </div>
+      <div className="chat"></div>
       <div className="actions">
         <div>
-          <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-          <button type="button" onClick={handleSendMessage}>Send message</button>
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <button type="button" onClick={handleSendMessage}>
+            Send message
+          </button>
         </div>
         <div>
-          <input type="text" value={room} onChange={(e) => setRoom(e.target.value)} />
-          <button type="button" onClick={handleJoinRoom}>Join room</button>
+          <input
+            type="text"
+            value={room}
+            onChange={(e) => setRoom(e.target.value)}
+          />
+          <button type="button" onClick={handleJoinRoom}>
+            Join room
+          </button>
         </div>
       </div>
     </ChatContainer>

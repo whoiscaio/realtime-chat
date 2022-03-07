@@ -55,9 +55,9 @@ const ChatContainer = styled('div', {
       '&:last-child button': {
         background: '#f6f7f4',
         color: '#333333',
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 const LoginContainer = styled('div', {

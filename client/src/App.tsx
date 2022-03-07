@@ -13,20 +13,26 @@ function App() {
     <div className="App">
       <Header>
         <h1>Chat App</h1>
-        { isUsernameSet && <span>{username}</span> }
+        {isUsernameSet && <span>{username}</span>}
       </Header>
-      {
-        !isUsernameSet
-        ? (
-          <LoginContainer>
-            <input type="text" placeholder="Inform your username..." value={username} onChange={(e) => setUsername(e.target.value)} />
-            <button type="button" onClick={() => ( username.trim() && setIsUsernameSet(true) )}>Set username</button>
-          </LoginContainer>
-        )
-        : (
-          <Chat currentUsername={username} />
-        )
-      }
+      {!isUsernameSet ? (
+        <LoginContainer>
+          <input
+            type="text"
+            placeholder="Inform your username..."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => username.trim() && setIsUsernameSet(true)}
+          >
+            Set username
+          </button>
+        </LoginContainer>
+      ) : (
+        <Chat currentUsername={username} />
+      )}
     </div>
   );
 }
