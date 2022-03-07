@@ -61,6 +61,7 @@ function Chat({ currentUsername }: ChatProps) {
         {messageList &&
           messageList.map((message) => (
             <div
+              key={JSON.stringify(message)}
               className={
                 message.warn
                   ? 'warn-message'
