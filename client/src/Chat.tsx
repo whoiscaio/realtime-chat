@@ -110,6 +110,7 @@ function Chat({ currentUsername }: ChatProps) {
             Join room
           </button>
         </div>
+        { !joinedRoom && <span>You should join a room</span> }
       </div>
     </ChatContainer>
   );
