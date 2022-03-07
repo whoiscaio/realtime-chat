@@ -23,6 +23,15 @@ function Chat({ currentUsername }: ChatProps) {
 
   useEffect(() => {
     socket = io(SOCKET_URI);
+
+    socket.on('receive-message', (data: Message) => {
+      const newMessage = data;
+
+      setMessageList((prevState) => [
+        ...prevState,
+        newMessage
+      ])
+    })
   }, []);
 
   function handleSendMessage() {
@@ -34,7 +43,7 @@ function Chat({ currentUsername }: ChatProps) {
     setMessageList((prevState) => [...prevState, newMessage]);
     setMessage('');
 
-    socket.emit('message', newMessage);
+    socket.emit('send-message', newMessage);
   }
 
   function handleJoinRoom() {
