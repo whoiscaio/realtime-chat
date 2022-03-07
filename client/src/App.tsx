@@ -7,7 +7,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Chat App</h1>
+      <header>
+        <h1>Chat App</h1>
+        { isUsernameSet && <span>{username}</span> }
+      </header>
       {
         !isUsernameSet
         ? (

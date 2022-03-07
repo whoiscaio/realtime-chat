@@ -4,12 +4,10 @@ type ChatProps = {
 
 function Chat({ currentUsername }: ChatProps) {
   return (
-    <div>
-      <header>
-        <h1>Chat</h1>
-        <span>{currentUsername}</span>
-      </header>
+    <div className="chat">
+      
     </div>
   )
 }
+
 export default Chat
