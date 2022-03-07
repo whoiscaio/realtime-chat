@@ -31,6 +31,11 @@ const ChatContainer = styled('div', {
       color: '#ffffff',
       background: '#2222ff',
     },
+    '& .warn-message': {
+      alignSelf: 'center',
+      background: '#cccccc',
+      color: '#333333',
+    }
   },
   '& .actions': {
     maxWidth: '1000px',
