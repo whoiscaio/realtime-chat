@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { ChatContainer } from './styles';
 
 type ChatProps = {
@@ -12,22 +12,29 @@ type Message = {
   warn?: boolean;
 };
 
+let socket: Socket;
+const SOCKET_URI = 'http://localhost:8080';
+
 function Chat({ currentUsername }: ChatProps) {
   const [message, setMessage] = useState<string>('');
   const [room, setRoom] = useState<string>('');
   const [joinedRoom, setJoinedRoom] = useState<string>('');
   const [messageList, setMessageList] = useState<Message[]>([]);
 
-  function handleSendMessage() {
-    setMessageList((prevState) => [
-      ...prevState,
-      {
-        text: message,
-        person: currentUsername,
-      },
-    ]);
+  useEffect(() => {
+    socket = io(SOCKET_URI);
+  }, []);
 
+  function handleSendMessage() {
+    const newMessage = {
+      text: message,
+      person: currentUsername,
+    };
+
+    setMessageList((prevState) => [...prevState, newMessage]);
     setMessage('');
+
+    socket.emit('message', newMessage);
   }
 
   function handleJoinRoom() {
@@ -37,15 +44,15 @@ function Chat({ currentUsername }: ChatProps) {
   }
 
   useEffect(() => {
-    if(!joinedRoom) return;
+    if (!joinedRoom) return;
 
     setMessageList((prevState) => [
       ...prevState,
       {
         text: `Joined room ${joinedRoom}`,
         warn: true,
-      }
-    ])
+      },
+    ]);
   }, [joinedRoom]);
 
   return (
@@ -62,7 +69,7 @@ function Chat({ currentUsername }: ChatProps) {
                   : 'received-message'
               }
             >
-              { message.person && <span>{message.person}</span> }
+              {message.person && <span>{message.person}</span>}
               <p>{message.text}</p>
             </div>
           ))}
