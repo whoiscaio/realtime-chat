@@ -43,17 +43,18 @@ function Chat({ currentUsername }: ChatProps) {
     setMessageList((prevState) => [...prevState, newMessage]);
     setMessage('');
 
-    socket.emit('send-message', newMessage);
+    socket.emit('send-message', newMessage, joinedRoom);
   }
 
   function handleJoinRoom() {
     setJoinedRoom(room);
-
     setRoom('');
   }
 
   useEffect(() => {
     if (!joinedRoom) return;
+
+    socket.emit('join-room', joinedRoom);
 
     setMessageList((prevState) => [
       ...prevState,
