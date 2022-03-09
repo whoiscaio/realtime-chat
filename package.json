@@ -1,0 +1,11 @@
+{
+  "name": "realtime-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/whoiscaio/realtime-chat.git",
+  "author": "Caio <whoiscaio@protonmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+  }
+}
