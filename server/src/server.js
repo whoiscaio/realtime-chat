@@ -1,8 +1,7 @@
-import { config } from 'dotenv';
-config();
+require('dotenv').config();
 
-import './websocket';
-import { server } from './app';
+require('./websocket');
+const { server } = require('./app');
 
 const PORT = process.env.PORT || 8080;
 
